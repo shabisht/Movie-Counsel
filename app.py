@@ -1,8 +1,6 @@
 import pandas as  pd
 import streamlit as st
 import joblib
-from traitlets import default
-from PIL import Image
 
 st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapper:')
 st.title("Your Movie Counsel App")

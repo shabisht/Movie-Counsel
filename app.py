@@ -107,9 +107,7 @@ def create_rectangles(movie):
     url = f"{movie['cover_url'].split('_V1_')[0]}.jpg"
     if movie['cover_url'].startswith("https://t3"):
             url = movie['cover_url']
-    
-   
-    int(movie['duration'])
+
     rectangles = f"""
             <style>
                 /* CSS for the outer container */

@@ -3,6 +3,13 @@ import streamlit as st
 import joblib
 
 st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapper:')
+# st.markdown("""<center><img src="images/logo7.gif" /></center>""", unsafe_allow_html=True)
+c1, c2,c3,c4,c5 = st.columns(5)
+c1.empty()
+c2.empty()
+c3.image("images/logo7.gif", use_column_width=True)
+c4.empty()
+c5.empty()
 st.title("Your Movie Counsel App")
 
 @st.cache_resource
@@ -63,37 +70,98 @@ def create_movie_grid(movie_details, n=5):
                     break
 
 def create_box(x):
-
     box_css = f"""
         <style>
             /* Define CSS variables for colors */
             :root {{
-                --background-color: #36454F; /* Lighter shade of blue-gray background color */
                 --text-color: #fff; /* Whitish text color */
-                --border-color: #000; /* Black border color */
             }}
 
             /* CSS for the rectangular box */
             .box {{
-                width: 100%; /* Make the box width adaptive to its parent */
-                background-color: var(--background-color); /* Use the CSS variable for background color */
-                border: 2px solid var(--border-color); /* Use the CSS variable for border color */
+                width: 100%; /* Make the box width adaptive to its parent */ #0E1117
                 padding: 1px;
                 text-align: center;
-                border-radius: 15px; /* Increased border-radius for rounder corners */
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
             }}
 
             /* CSS for the text inside the box */
             .box p {{
                 color: var(--text-color); /* Use the CSS variable for text color */
                 font-size: 18px;
-                font-style:lato;
             }}
         </style>
         <div class="box"><p>{x}</p></div>
     """
     st.markdown(box_css, unsafe_allow_html=True)
+
+def create_rectangles(movie):
+    url = f"{movie['cover_url'].split('_V1_')[0]}.jpg"
+    rectangles = f"""
+            <style>
+                /* CSS for the outer container */
+                .outer-container {{
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                }}
+
+                /* CSS for the individual rectangular boxes */
+                .rect_box {{
+                    width: 300px;
+                    height: 350px;
+                    background-color: #172a46;
+                    border-radius: 10px;
+                    text-align: center;
+                    padding: 3px;
+                    color: #fff;
+                    font-size: 12px;
+                    font-weight: bold;
+                    font-family:courier;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                    margin: 8px; /* Adjust the margin to control the spacing */
+                }}
+
+                .rect_box img {{
+                    width: 100%; /* Adjust image width to 100% of parent (Box 1) */
+                    height: 100%; /* Adjust image height to 100% of parent (Box 1) */
+                    max-width: 100%; /* Ensure image doesn't exceed parent width */
+                    max-height: 100%; /* Ensure image doesn't exceed parent height */
+        
+                }}
+                
+            </style>
+
+            <!-- Outer container for centering -->
+
+            <div class="outer-container">
+                <!-- Rectangular Box 1 -->
+                <div class="rect_box">
+                    <img src="{url}" alt="Image in Box 1">
+                </div>
+                <!-- Rectangular Box 2 -->
+                <div class="rect_box">
+                    <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Plot</h4></center>
+                    <p>{movie['description']}</p>
+                </div>
+                <!-- Rectangular Box 3 -->
+                <div class="rect_box">
+                     <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Info</h4></center>
+                    <p>Type - {movie['kind']}</p>
+                    <p>Rating - {movie['rating']}🌟</p>
+                    <p>Genre - {movie['genre']}</p>
+                    <p>Runtime - {int(movie['duration'])} min.</p>
+                    <p>Country - {movie['country']}</p>
+                    <p>Language - {movie['languages']}</p>
+                </div>
+                <!-- Rectangular Box 4 -->
+                <div class="rect_box">
+                    <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Cast</h4></center>                    
+                    <p>Star Cast - {movie['stars']}</p>
+                    <p>Director - {movie['directors']}</p>
+                </div>
+            </div>
+    """
+    st.markdown(rectangles, unsafe_allow_html=True)
 
 # st.write(option_list)
 # st.write(default_list)
@@ -149,13 +217,16 @@ if(len(default_list)>0):
         
         with st.expander("See Complete Movie Details", expanded=False):
             for movie in recom_movie_details:
-                    with st.container():
-                        col_exp1, col_exp2 = st.columns([1,4])
-                        with col_exp1:
-                            st.image(f"{movie['cover_url'].split('_V1_')[0]}.jpg")
-                        with col_exp2:
-                            create_box(movie['description'])
-                            
+                with st.container():
+                    st.markdown(f'''<center><h2 style="color:#79cdff">{movie['name'].title()}</h2></center>''', unsafe_allow_html=True)
+                    # col_exp1, col_exp2 = st.columns([1,4])
+                    # with col_exp1:
+                    #     st.image(f"{movie['cover_url'].split('_V1_')[0]}.jpg")
+                    # with col_exp2:
+                    create_rectangles(movie)
+                    # create_box(movie['description'])
+                    
+                st.divider()
 
     if reset_button:
         option_list.clear()

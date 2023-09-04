@@ -57,7 +57,12 @@ def fetch_movie_details(default_list, index_provided = False):
 movies_df, similarity, option_list, default_list, default_value = import_dataset_similarity_matrix()
 
 def create_movie_grid(movie_details, n=5):
-    urls = [f"{x['cover_url'].split('_V1_')[0]}.jpg" for x in movie_details]
+    urls = []
+    for x in movie_details:
+        if x['cover_url'].startswith("https://t3"):
+            urls.append(x['cover_url'])
+        else:
+            urls.append(f"{x['cover_url'].split('_V1_')[0]}.jpg")
     rows = len(movie_details)//n
     if len(movie_details)%n != 0:
         rows+=1

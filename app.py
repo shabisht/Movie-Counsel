@@ -14,7 +14,7 @@ st.title("Your Movie Counsel App")
 
 @st.cache_resource
 def import_dataset_similarity_matrix():
-    movies_df = pd.read_csv("complete_dataset_with_urls.csv")
+    movies_df = pd.read_csv("complete_dataset_with_urls.csv", keep_default_na=False)
     similarity = joblib.load('similarity_8k.joblib')
     options = set()
     default = set()

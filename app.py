@@ -102,7 +102,7 @@ def create_box(x):
 def create_rectangles(movie):
     runtime = "N/A"
     if movie['duration'] != "N/A":
-        runtime = f"{movie['duration'][0:-3]} min"
+        runtime = f"{movie['duration'].replace('.0','')} min"
 
     url = f"{movie['cover_url'].split('_V1_')[0]}.jpg"
     if movie['cover_url'].startswith("https://t3"):

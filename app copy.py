@@ -176,9 +176,12 @@ def create_rectangles(movie):
             </div>
     """
     st.markdown(rectangles, unsafe_allow_html=True)
-c1,c2,c3,c4,c5 = st.columns([1,2,0.1,1,0.9])
-input_movie = c1.text_input('', value="Avengers", key='InputMovieName', placeholder='Enter Movie/Series Name', label_visibility='collapsed')
-# st.markdown(st_input_bar_top, unsafe_allow_html=True)
+
+# st.write(option_list)
+# st.write(default_list)
+
+input_movie = st.text_input('', value="Avengers", key='InputMovieName', placeholder='Enter a Movie Name and get :cool: Recommendation')
+
 if input_movie != "":
     input_movie = input_movie.lower()
     index_list = movies_df[movies_df.name.str.contains(input_movie)].index.tolist()
@@ -187,7 +190,7 @@ if input_movie != "":
 
 if len(default_list) != 0:
     default_value = list(default_list)
-temp = c2.multiselect("", key="SearchedMovies", options=sorted(list(option_list)), default=default_value, max_selections=5,label_visibility='collapsed')
+temp = st.multiselect("", key="SearchedMovies", options=sorted(list(option_list)), default=default_value, max_selections=10)
 if len(temp) != 0:
     default_list.update(temp)
 
@@ -198,10 +201,9 @@ if len(temp) != 0:
 # https://m.media-amazon.com/images/M/MV5BZjhjMWE5OTUtOWNlMi00ZjM0LWE0YTktMWZkNmIwZmZkYzBjXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX101_CR0,0,101,150_.jpg
 # https://imdb-video.media-imdb.com/vi144884505/1434659607842-pgv4ql-1632113142638.mp4?Expires=1693813755&Signature=HljJycCo2QYh7pDWBFwkBDcGqFpqUKRykwABwg2SwzM92ZZ4LRBM0JYByAIBpo9lQBgXCRgO2S4hvSp-te-uz6ofsvXmcaUltrL4Fr41Fu0rxPCRv6SVfxfc6pP3l~jEyFov~BxMz5BodG~2gd956y4Az8UF3CW8zMsZFS4T1biWZzGqQtEofYPKeL7gYHUntyCGYwK6sS-P5xmvmUsv38XP13Qd0Uzcdq8SPT9BNy8-apQR4p0ET-uHCU7F6UpyAoMLT9FnHCTxuG6dyUzks-K-bbLLFcO16lSZspq6zXiUZqFebDJebt6IwgQ~wq2dR732zBNa~eFIXIebVyrhAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 
-# cols = [x for x in st.columns(6)]
-c3.empty()
-recom_button = c4.button("Show Recommendation", type='primary')
-reset_button = c5.button("Reset", type='primary')
+cols = [x for x in st.columns(6)]
+recom_button = cols[0].button("Show Recommendation", type='primary')
+reset_button = cols[1].button("Reset", type='primary')
 if(len(default_list)>0):
     if recom_button:
         st.title("Selected Movies")
@@ -228,6 +230,7 @@ if(len(default_list)>0):
                     # create_box(movie['description'])
                     
                 st.divider()
+
     if reset_button:
         option_list.clear()
         default_list.clear()

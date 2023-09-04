@@ -119,6 +119,8 @@ def create_rectangles(movie):
                     font-family:courier;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
                     margin: 8px; /* Adjust the margin to control the spacing */
+                    font-size: 5vw; /* Responsive font size based on viewport width (adjust as needed) */
+                    overflow: scroll; /* Hide text overflow */
                 }}
 
                 .rect_box img {{
@@ -128,11 +130,13 @@ def create_rectangles(movie):
                     max-height: 100%; /* Ensure image doesn't exceed parent height */
         
                 }}
-                
+
+                .rect_box-text-container {{
+                height: 100%; /* Set a fixed height for the text container */
+                overflow-y: auto; /* Add vertical scroll when text overflows */
+            }}
             </style>
-
             <!-- Outer container for centering -->
-
             <div class="outer-container">
                 <!-- Rectangular Box 1 -->
                 <div class="rect_box">
@@ -145,7 +149,7 @@ def create_rectangles(movie):
                 </div>
                 <!-- Rectangular Box 3 -->
                 <div class="rect_box">
-                     <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Info</h4></center>
+                    <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Info</h4></center>
                     <p>Type - {movie['kind']}</p>
                     <p>Rating - {movie['rating']}🌟</p>
                     <p>Genre - {movie['genre']}</p>
@@ -218,7 +222,7 @@ if(len(default_list)>0):
         with st.expander("See Complete Movie Details", expanded=False):
             for movie in recom_movie_details:
                 with st.container():
-                    st.markdown(f'''<center><h2 style="color:#79cdff">{movie['name'].title()}</h2></center>''', unsafe_allow_html=True)
+                    st.markdown(f'''<center><h2 style="color:#79cdff;font-style:rubik;font-weight:bold;">{movie['name'].title()}</h2></center>''', unsafe_allow_html=True)
                     # col_exp1, col_exp2 = st.columns([1,4])
                     # with col_exp1:
                     #     st.image(f"{movie['cover_url'].split('_V1_')[0]}.jpg")

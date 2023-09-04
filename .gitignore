@@ -1,3 +1,2 @@
 # below files to be ignored as their size is large
-*.joblib
-*.csv
+*final_dataset_8k.csv

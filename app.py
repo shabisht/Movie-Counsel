@@ -100,7 +100,16 @@ def create_box(x):
     st.markdown(box_css, unsafe_allow_html=True)
 
 def create_rectangles(movie):
+    runtime = "N/A"
+    if movie['duration'] != "N/A":
+        runtime = f"{int(movie['duration'])} min"
+
     url = f"{movie['cover_url'].split('_V1_')[0]}.jpg"
+    if movie['cover_url'].startswith("https://t3"):
+            url = movie['cover_url']
+    
+   
+    int(movie['duration'])
     rectangles = f"""
             <style>
                 /* CSS for the outer container */
@@ -168,7 +177,7 @@ def create_rectangles(movie):
                     <p>Type - {movie['kind']}</p>
                     <p>Rating - {movie['rating']}🌟</p>
                     <p>Genre - {movie['genre']}</p>
-                    <p>Runtime - {int(movie['duration'])} min.</p>
+                    <p>Runtime - {runtime}</p>
                     <p>Country - {movie['country']}</p>
                     <p>Language - {movie['languages']}</p>
                 </div>

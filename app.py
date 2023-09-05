@@ -82,7 +82,7 @@ def create_movie_grid(movie_details, n=5):
 def create_rectangles(movie):
     runtime = "N/A"
     if movie['duration'] != "N/A":
-        runtime = f"{movie['duration'].replace('.0','')} min"
+        runtime = f"{movie['duration'][0:-3]} min"
 
     url = f"{movie['cover_url'].split('_V1_')[0]}.jpg"
     if movie['cover_url'].startswith("https://t3"):

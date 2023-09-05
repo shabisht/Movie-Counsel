@@ -12,7 +12,7 @@ class movie_counsel:
     def __init__(self):
         st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapper:')
         if "options" not in st.session_state:
-            st.write("session var creating")
+#            st.write("session var creating")
             st.session_state['options'] = set()
             st.session_state['default'] = set()
             st.session_state['default_value'] = None

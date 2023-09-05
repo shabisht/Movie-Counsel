@@ -13,7 +13,7 @@ c5.empty()
 st.title("Your Movie Counsel App")
 
 if "options" not in st.session_state:
-    st.write("session var creating")
+#    st.write("session var creating")
     st.session_state['options'] = set()
     st.session_state['default'] = set()
     st.session_state['default_value'] = None

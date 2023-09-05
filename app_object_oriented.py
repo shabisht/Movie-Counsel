@@ -33,7 +33,7 @@ class movie_counsel:
         return [x for x in st.columns(n)]
   
     def todo_on_text_input_change(self):
-        st.write("todocalled")
+#        st.write("todocalled")
         st.session_state.input_value = st.session_state.InputMovieName
         if len(st.session_state.SearchedMovies)>0:
             st.session_state.default.update(st.session_state.SearchedMovies)

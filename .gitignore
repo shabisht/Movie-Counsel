@@ -3,3 +3,6 @@ final_dataset_8k.csv
 complete_dataset_with_urls_Org.csv
 appcopy.py
 old_complete_dataset_with_urls
+movie_counsel_org.py
+__pycache__
+test

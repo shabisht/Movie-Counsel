@@ -1,7 +1,8 @@
-# Recommender-System.
-[![Website](https://img.shields.io/badge/website-Movie--Counsel-blue?logo=streamlit&link=https%3A%2F%2Fmovie-counsel.streamlit.app&link=https%3A%2F%2Fmovie-counsel.streamlit.app)
-[![Linkedin](https://raw.githubusercontent.com/peskyji/Image_badge_icons/main/linkedin.svg)](https://www.linkedin.com/in/shailesh-bisht-b42a73184/)
-[![Hosted-on](https://raw.githubusercontent.com/peskyji/Image_badge_icons/main/streamlit.svg)](https://streamlit.io/)
+# Movie Counsel - Your own Movie/Series Recommender-System.
+[![Site](https://img.shields.io/badge/View_site-Movie--Counsel-cc8899?style=for-the-badge)](https://movie-counsel.streamlit.app/)
+[![Linkedin](https://img.shields.io/static/v1?label=visit&message=My%20Linkedin%20Page&color=blue&logo=linkedin)](https://www.linkedin.com/in/shailesh-bisht-b42a73184/)
+[![Hosted-on](https://img.shields.io/static/v1?label=made%20with&message=Streamlit&color=c21a09&logo=streamlit)](https://streamlit.io/)
+[![python](https://img.shields.io/static/v1?label=Python&message=%3E=3.9&color=brown&logo=python)]()
 <br>
 # 🎬 Movie Counsel - Your own Movie Recommender System
 
@@ -26,4 +27,8 @@ Or Simply run `pip install -r requirements.txt`
 Web app is developed using Streamlit.
 Pandas is used for Data Analysis.
 Joblib is used for storing and loading the ML Mode.
+
+## Data Analysis
+Please refer to the jupyter notebooks inside 📁 Jupyter Notebooks.
+#### find Source Data [here](https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9)
 

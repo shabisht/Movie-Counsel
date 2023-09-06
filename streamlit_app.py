@@ -1,7 +1,7 @@
 # =========================== Imporitng required libraries ==============================================================================================
 import streamlit as st
 import pandas as pd
-import joblib, pickle
+import pickle #, joblib
 from urllib.request import urlopen
 from movie_counsel import *
 # =========================== Fetching dataset and ML Model ==============================================================================================

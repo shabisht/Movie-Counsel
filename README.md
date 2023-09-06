@@ -62,4 +62,6 @@ Or Simply run `pip install -r requirements.txt`
 - ML Model i.e., the similarity matrix being bigger in size is stored in [G-Drive](https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9)
 - Stremlit Cloud is used for hosting the web app.
 ## 4. Find the demo below
-https://raw.githubusercontent.com/peskyji/Recommender-System/main/screencast/streamlit-streamlit_app-2023-09-06-23-09-59.webm
+https://github.com/peskyji/Recommender-System/assets/65287730/1bc03add-2872-466c-b8c5-9416469aff14
+
+

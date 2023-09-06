@@ -63,5 +63,3 @@ Or Simply run `pip install -r requirements.txt`
 - Stremlit Cloud is used for hosting the web app.
 ## 4. Find the demo below
 https://github.com/peskyji/Recommender-System/assets/65287730/1bc03add-2872-466c-b8c5-9416469aff14
-
-

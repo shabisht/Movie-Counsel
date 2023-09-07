@@ -21,11 +21,6 @@ pickle
 ```
 Or Simply run `pip install -r requirements.txt`
 
-### ii). How does it work?
-- Web app is developed using Streamlit.
-- Pandas is used for Data Analysis.
-- Joblib is used for storing and loading the ML Mode.
-
 ## 2. Data Analysis
 ### i). Source Data
 - <b>Source</b> - [IMDB Movies Dataset](https://www.kaggle.com/datasets/ashishjangra27/imdb-movies-dataset) from Kaggle
@@ -45,17 +40,17 @@ Or Simply run `pip install -r requirements.txt`
 ### ii). EDA
 - Data Pre-processing and Data Cleaning is done on around 2.5M data records.
 - Following Python Packages are used for analysis: -
-    - EDA - Pandas, Numpy, re, scikit-learn, Cinemagoer
-    - Data Visualization - plotly, seaborn, matplotlib
-    - creating movie tags - nltk's Porter Stemmer
-- Please refer to the jupyter notebooks in this [📁](https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9),these were used while Data Pre-processing and Data Cleaning.
+    - **EDA** - Pandas, Numpy, re, scikit-learn
+    - **Data Visualization** - plotly, seaborn, matplotlib
+- Please refer to this **[notebook]**(https://colab.research.google.com/drive/1isHjN0l2HUsofaH0jIsHeZSBQ_2VHn6G) for complete detailed analysis, also check out other files in this **[📁]**(https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9),all these are part of the Data Pre-processing and Data Cleaning.
 
 ### iii). Movie Recommender Model
-- Python Package <b>Cinemagoer</b> is used for fetching missing details from IMDB based on Movie's IMDB-ID for most of the records in the dataset.
+- Python Package **Cinemagoer** is used for fetching missing details from IMDB based on Movie's IMDB-ID for most of the records in the dataset.
 - movie tags are created for each movie by combining plot details, runtime details, year, genre, director, star-cast etc.
-- *Nltk* is used for stemming the words of movie tag. Stemming in NLP is basically the process of reducing a word to its word stem that affixes to suffixes and prefixes or the roots.
-- Scikit-learn's TfidifVectorizer (Term Frequency Inverse Document Frequency) is used to transform text into a meaningful representation of numbers which is used to fit machine algorithm for prediction. Basically it calculates how relevant a word in a series or corpus is to a text. The meaning increases proportionally to the number of times in the text a word appears but is compensated by the word frequency in the corpus (data-set).
-- Cosine_similarity matrix is used for finding the closet movies(documents) for a given movie (document). Basically it measures the similarity between two vectors or matrices based on their angle rather than distances like Euclidean or Manhattan etc.
+- **Nltk's Porter Stemmer** is used for **stemming** the words of movie tag. Stemming in NLP is basically the process of reducing a word to its word stem that affixes to suffixes and prefixes or the roots.
+- Scikit-learn's **TfidifVectorizer** (Term Frequency Inverse Document Frequency) is used to transform text into a meaningful representation of numbers which is used to fit machine algorithm for prediction. Basically it calculates how relevant a word in a series or corpus is to a text. The meaning increases proportionally to the number of times in the text a word appears but is compensated by the word frequency in the corpus (data-set).
+- Scikit-learn's **Cosine_Similarity** matrix is used for finding the closet movies(documents) for a given movie (document). Basically it measures the similarity between two vectors or matrices based on their angle rather than distances like Euclidean or Manhattan etc.
+- Please refer to this **[notebook]**(https://colab.research.google.com/drive/1DKl9RipdzavlXmgZ73fxI9lEfBzpJmGk) for complete detailed analysis, also check out other files in this **[📁]**(https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9),all these are part of the Data Pre-processing and Data Cleaning.
 
 ## 3. Web App
 - Streamlit is used for building the web app.

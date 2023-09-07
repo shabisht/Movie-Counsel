@@ -42,7 +42,7 @@ Or Simply run `pip install -r requirements.txt`
 - Following Python Packages are used for analysis: -
     - **EDA** - Pandas, Numpy, re, scikit-learn
     - **Data Visualization** - plotly, seaborn, matplotlib
-- Please refer to this **[notebook]**(https://colab.research.google.com/drive/1isHjN0l2HUsofaH0jIsHeZSBQ_2VHn6G) for complete detailed analysis, also check out other files in this **[📁]**(https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9),all these are part of the Data Pre-processing and Data Cleaning.
+- Please refer to this **[notebook](https://colab.research.google.com/drive/1isHjN0l2HUsofaH0jIsHeZSBQ_2VHn6G)** for complete detailed analysis, also check out other files in this **[📁](https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9)**,all these are part of the Data Pre-processing and Data Cleaning.
 
 ### iii). Movie Recommender Model
 - Python Package **Cinemagoer** is used for fetching missing details from IMDB based on Movie's IMDB-ID for most of the records in the dataset.

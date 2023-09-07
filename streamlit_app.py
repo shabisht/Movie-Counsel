@@ -24,17 +24,17 @@ def import_dataset_similarity_matrix():
 
 if __name__ == '__main__':
   
-    movie_counsel_obj = movie_counsel()
-    movies_df, similarity = import_dataset_similarity_matrix()
+    movie_counsel_obj = movie_counsel() # creating object
+    movies_df, similarity = import_dataset_similarity_matrix() # importing datasets, ML Model
     movie_counsel_obj.set_logo()
     movie_counsel_obj.set_title("Your Movie counseller")
     movie_counsel_obj.create_inputBar_selectBar_resetButton(movies_df)
 
     if(len(st.session_state.default)>0):
         movie_counsel_obj.set_title("Selected Movies")
-        movie_counsel_obj.fetch_movie_details(movies_df, index_provided=False)
-        movie_counsel_obj.create_movie_grid(5)
+        movie_counsel_obj.fetch_movie_details(movies_df, index_provided=False) # get all movie deatails for user's selected movies
+        movie_counsel_obj.create_movie_grid(5) # show user's selected movies's cover in 5*5 grid
         movie_counsel_obj.set_title("Recommendations")
         movie_counsel_obj.recommend(similarity, n=5)
-        movie_counsel_obj.fetch_movie_details(movies_df, index_provided=True)
+        movie_counsel_obj.fetch_movie_details(movies_df, index_provided=True) # get all movie deatails for recommended movies
         movie_counsel_obj.display_recommended_movie_details()

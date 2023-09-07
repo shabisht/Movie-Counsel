@@ -5,7 +5,7 @@
 [![python](https://img.shields.io/static/v1?label=Python&message=%3E=3.9&color=brown&logo=python)]()
 <br>
 
-## 1. App Intro
+## 1. App Introduction
 This Streamlit based Web app helps you find the right recommendation for your favourite Movies or TV Shows. Find movies from differrent genres and get recommendation for the same.
 - App Features
     - Content + Popularity Based
@@ -53,7 +53,7 @@ Or Simply run `pip install -r requirements.txt`
 ### iii). Movie Recommender Model
 - Python Package <b>Cinemagoer</b> is used for fetching missing details from IMDB based on Movie's IMDB-ID for most of the records in the dataset.
 - movie tags are created for each movie by combining plot details, runtime details, year, genre, director, star-cast etc.
-- Nltk is used for stemming the words of movie tag. Stemming in NLP is basically the process of reducing a word to its word stem that affixes to suffixes and prefixes or the roots.
+- *Nltk* is used for stemming the words of movie tag. Stemming in NLP is basically the process of reducing a word to its word stem that affixes to suffixes and prefixes or the roots.
 - Scikit-learn's TfidifVectorizer (Term Frequency Inverse Document Frequency) is used to transform text into a meaningful representation of numbers which is used to fit machine algorithm for prediction. Basically it calculates how relevant a word in a series or corpus is to a text. The meaning increases proportionally to the number of times in the text a word appears but is compensated by the word frequency in the corpus (data-set).
 - Cosine_similarity matrix is used for finding the closet movies(documents) for a given movie (document). Basically it measures the similarity between two vectors or matrices based on their angle rather than distances like Euclidean or Manhattan etc.
 

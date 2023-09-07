@@ -50,7 +50,7 @@ Or Simply run `pip install -r requirements.txt`
 - **Nltk's Porter Stemmer** is used for **stemming** the words of movie tag. Stemming in NLP is basically the process of reducing a word to its word stem that affixes to suffixes and prefixes or the roots.
 - Scikit-learn's **TfidifVectorizer** (Term Frequency Inverse Document Frequency) is used to transform text into a meaningful representation of numbers which is used to fit machine algorithm for prediction. Basically it calculates how relevant a word in a series or corpus is to a text. The meaning increases proportionally to the number of times in the text a word appears but is compensated by the word frequency in the corpus (data-set).
 - Scikit-learn's **Cosine_Similarity** matrix is used for finding the closet movies(documents) for a given movie (document). Basically it measures the similarity between two vectors or matrices based on their angle rather than distances like Euclidean or Manhattan etc.
-- Please refer to this **[notebook]**(https://colab.research.google.com/drive/1DKl9RipdzavlXmgZ73fxI9lEfBzpJmGk) for complete detailed analysis, also check out other files in this **[📁]**(https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9),all these are part of the Data Pre-processing and Data Cleaning.
+- Please refer to this **[notebook](https://colab.research.google.com/drive/1DKl9RipdzavlXmgZ73fxI9lEfBzpJmGk)** for complete detailed analysis, also check out other files in this **[📁](https://drive.google.com/drive/u/0/folders/1eYmIMKxbsw8CXg6qKJDU2NTP6qwkv0C9)**,all these are part of the Data Pre-processing and Data Cleaning.
 
 ## 3. Web App
 - Streamlit is used for building the web app.

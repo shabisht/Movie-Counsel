@@ -31,6 +31,7 @@ class movie_counsel:
             st.session_state.apply_button = False
             st.session_state.disabled_selectBar = False
             st.session_state.disabled_inputBar = False
+            st.session_state.slider_range = list(range(5,20))
             
     def set_source_data(self, movies_df, similarity):
          if "movies_df" not in st.session_state:
@@ -100,6 +101,7 @@ class movie_counsel:
             st.session_state.apply_button = False
             st.session_state.disabled_selectBar = False
             st.session_state.disabled_inputBar = False
+            st.session_state.slider_range = list(range(5,20))
 
     def create_resetButton(self):
         ''' This method creates a Reset Button. It will reset all the session_state variables'''
@@ -118,7 +120,7 @@ class movie_counsel:
             st.session_state.disabled_inputBar = False
 
     def create_toogle(self):
-        self.toogle_button = st.toggle(":red[&#9776;]", key="toogleButton", help="Filter Movies", on_change=self.todo_on_toogle_change)
+        self.toogle_button = st.toggle(":red[&#9776;]", key="toogleButton", help="Filter Movies" ,on_change=self.todo_on_toogle_change)
 
     def todo_on_country_change(self):
         if len(st.session_state.filterCountry)>0:
@@ -147,12 +149,19 @@ class movie_counsel:
             st.session_state.options.update(st.session_state.result_list)
             st.session_state.default.update(st.session_state.result_list)
 
+        if len(st.session_state.default)>=2:
+            st.session_state.slider_range = list(range(2,20))
+        else:
+            st.session_state.slider_range = list(range(5,20))
+
     def todo_on_applyButton_click(self):
         st.session_state.apply_button = st.session_state.applyButton
 
     def show_filters(self, np):
         if st.session_state.toogleButton:
-            with st.expander("Filter out as per your preferance", expanded=True):
+            with st.expander("", expanded=True):
+                st.subheader("Advanced Movie Search")
+                st.select_slider("Recommendation per select Movie", key='recommendationSlider',value=5, options = st.session_state.slider_range)
                 col1, col2 = st.columns(2)
                 col3, col4 = st.columns(2)
                 cntrySet = set()
@@ -166,7 +175,7 @@ class movie_counsel:
                 selected_genre_list = col2.multiselect("Genre", key="filterGenre", options=sorted(list(genreSet)), default= st.session_state.genre_default, on_change=self.todo_on_genre_change)  
                 selected_kind_list = col3.multiselect("Kind", key="filterKind", options=np.sort(st.session_state.movies_df.kind.unique()), default= st.session_state.kind_default, on_change=self.todo_on_kind_change)
                 selected_language_list = col4.multiselect("Language", key="filterLanguage", options=np.sort(st.session_state.movies_df.languages.unique()), default= st.session_state.language_default, on_change=self.todo_on_language_change)
-
+                # st.write(selected_cntry_list)
                 if len(selected_cntry_list)!=0 or len(selected_genre_list)!=0 or len(selected_kind_list)!=0 or len(selected_language_list)!=0:
                     apply_button = st.button("Apply", key="applyButton", type='primary', on_click=self.todo_on_applyButton_click)
                     if st.session_state.apply_button:
@@ -180,7 +189,7 @@ class movie_counsel:
                             st.session_state.filter_df = st.session_state.filter_df[st.session_state.filter_df.languages.str.contains('|'.join(selected_language_list))]
     
                         st.multiselect("",options=st.session_state.filter_df.name, key="resultList", default=st.session_state.result_default, max_selections=5, on_change=self.todo_on_resultList_change)
-
+    
     def fetch_movie_details(self, index_provided = False):
         ''' If input value index_provided = False(default) then this method will fetch user's selected movies from movies dataset based on movie names and store it in a list of dictionaries. Each dictionary contains details of one movie.
             If index_provided = True, then this method will fetch details of recommended movies from movies dataset based on indexes provided by the recommend method and store it in a list of dictionaries. Each dictionary contains details of one movie.
@@ -339,14 +348,15 @@ class movie_counsel:
         with cols[3]:
             self.create_resetButton()
 
-    def recommend(self, n=5):
+    def recommend(self):
         ''' this method will recommend movies based on user's selected movies using the st.session_state.similarity matrix.
             it will provide the indexes of the recommended movies '''
-        
+        n = 5
+        if 'recommendationSlider' in st.session_state:
+            n = st.session_state.recommendationSlider
+
         index_list = [x['index'] for x in st.session_state.movie_details_selected]
         st.session_state.recommended_movies_index = []
-        if len(index_list) == 1:
-            n = 10
         for x in index_list:
             count = 0
             distances = st.session_state.similarity[x]

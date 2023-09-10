@@ -38,6 +38,6 @@ if __name__ == '__main__':
         movie_counsel_obj.fetch_movie_details(index_provided=False) # get all movie deatails for user's selected movies
         movie_counsel_obj.create_movie_grid(5) # show user's selected movies's cover in 5*5 grid
         movie_counsel_obj.set_title("Recommendations")
-        movie_counsel_obj.recommend(n=5)
+        movie_counsel_obj.recommend()
         movie_counsel_obj.fetch_movie_details(index_provided=True) # get all movie deatails for recommended movies
         movie_counsel_obj.display_recommended_movie_details()

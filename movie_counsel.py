@@ -330,6 +330,7 @@ class movie_counsel:
                         <center><h4 style="font-weight:bold;font-family:rubik;color:#FF3A4A;">Cast</h4></center>                    
                         <p>Star Cast - {movie['stars']}</p>
                         <p>Director - {movie['directors']}</p>
+                        <a href="https://www.imdb.com/title/{movie['id']}" target="_blank"><p>Visit IMDB</p></a>
                     </div>
                 </div>
         """

@@ -12,7 +12,7 @@ def import_dataset_similarity_matrix():
     ''' This function will fetch and return pandas, numpy object for dataset and the ML Model respectively.
         Note:- Make sure this function is using streamlit's cache properties to avoid loading datasets on every refresh '''
     
-    movies_df = pd.read_csv("Movie-Recommender-System/dataset/complete_dataset_with_urls.csv", keep_default_na=False) # loading movies dataset
+    movies_df = pd.read_csv("dataset/complete_dataset_with_urls.csv", keep_default_na=False) # loading movies dataset
     
     # g_drive_url_joblib = "https://drive.google.com/uc?id=1-MxoPHx492LCSG45buqWYxycByHevZfe&confirm=t&uuid=742b2095-e0c5-4f0a-9f0e-8c9e1e0a5f5b&at=AB6BwCCo0Cg2rZlZuHXZhaAkms7S:1694004179033"
     g_drive_url_pkl = "https://drive.google.com/uc?id=1u7NLuxrBQKaN4Fj0KS2tt98Whz927BL-&confirm=t&uuid=2525fb6b-f249-4851-8036-27d3de86dad4&at=AB6BwCA59t4_ReTmngovNU0n1vNT:1694003393913"

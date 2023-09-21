@@ -13,7 +13,7 @@ st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapp
 
 def call_api():
     # response  = requests.post(url='https://sentiment-analysis-api.up.railway.app/predict', data = json.dumps({'reviews':reviews})).text
-    response  = requests.post(url=API_URL, data = json.dumps({'reviews':reviews}))
+    response  = requests.post(url=st.secrets['API_URL'], data = json.dumps({'reviews':reviews}))
     return response
 
 def load_models():

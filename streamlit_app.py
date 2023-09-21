@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import os
 from urllib.request import urlopen
 from movie_counsel import *
 # =========================== Fetching dataset and ML Model ==============================================================================================
@@ -13,7 +12,7 @@ def import_dataset_similarity_matrix():
     ''' This function will fetch and return pandas, numpy object for dataset and the ML Model respectively.
         Note:- Make sure this function is using streamlit's cache properties to avoid loading datasets on every refresh '''
     
-    movies_df = pd.read_csv(f"{os.path.dirname(os.getcwd())}/Movie-Recommender-System/dataset/complete_dataset_with_urls.csv", keep_default_na=False) # loading movies dataset
+    movies_df = pd.read_csv("Movie-Recommender-System/dataset/complete_dataset_with_urls.csv", keep_default_na=False) # loading movies dataset
     
     # g_drive_url_joblib = "https://drive.google.com/uc?id=1-MxoPHx492LCSG45buqWYxycByHevZfe&confirm=t&uuid=742b2095-e0c5-4f0a-9f0e-8c9e1e0a5f5b&at=AB6BwCCo0Cg2rZlZuHXZhaAkms7S:1694004179033"
     g_drive_url_pkl = "https://drive.google.com/uc?id=1u7NLuxrBQKaN4Fj0KS2tt98Whz927BL-&confirm=t&uuid=2525fb6b-f249-4851-8036-27d3de86dad4&at=AB6BwCA59t4_ReTmngovNU0n1vNT:1694003393913"
@@ -26,25 +25,18 @@ def import_dataset_similarity_matrix():
 if __name__ == '__main__':
 
     movie_counsel_obj = movie_counsel() # creating object
-    print("cwd - ",os.getcwd)
-    print("cwd - ", os.listdir())
-    print("changing dir to parent dir")
-    print("parent - ",os.chdir(os.path.dirname(os.getcwd())))
-    print("dir changed to parent")
-    print("Now cwd - ",os.getcwd)
-    print("list - ", os.listdir())
-    # movies_df, similarity = import_dataset_similarity_matrix() # importing datasets, ML Model
-    # movie_counsel_obj.set_source_data(movies_df, similarity)
-    # movie_counsel_obj.set_logo()
-    # movie_counsel_obj.set_title("Your Movie counseller")
-    # movie_counsel_obj.create_inputBar_selectBar_resetButton(['InputMovieName', 'SearchedMovies', 'toogleButton', 'reset_button'])
-    # movie_counsel_obj.show_filters(np)
+    movies_df, similarity = import_dataset_similarity_matrix() # importing datasets, ML Model
+    movie_counsel_obj.set_source_data(movies_df, similarity)
+    movie_counsel_obj.set_logo()
+    movie_counsel_obj.set_title("Your Movie counseller")
+    movie_counsel_obj.create_inputBar_selectBar_resetButton(['InputMovieName', 'SearchedMovies', 'toogleButton', 'reset_button'])
+    movie_counsel_obj.show_filters(np)
     
-    # if(len(st.session_state.default)>0):
-    #     movie_counsel_obj.set_title("Selected Movies")
-    #     movie_counsel_obj.fetch_movie_details(index_provided=False) # get all movie deatails for user's selected movies
-    #     movie_counsel_obj.create_movie_grid(5) # show user's selected movies's cover in 5*5 grid
-    #     movie_counsel_obj.set_title("Recommendations")
-    #     movie_counsel_obj.recommend()
-    #     movie_counsel_obj.fetch_movie_details(index_provided=True) # get all movie deatails for recommended movies
-    #     movie_counsel_obj.display_recommended_movie_details()
+    if(len(st.session_state.default)>0):
+        movie_counsel_obj.set_title("Selected Movies")
+        movie_counsel_obj.fetch_movie_details(index_provided=False) # get all movie deatails for user's selected movies
+        movie_counsel_obj.create_movie_grid(5) # show user's selected movies's cover in 5*5 grid
+        movie_counsel_obj.set_title("Recommendations")
+        movie_counsel_obj.recommend()
+        movie_counsel_obj.fetch_movie_details(index_provided=True) # get all movie deatails for recommended movies
+        movie_counsel_obj.display_recommended_movie_details()

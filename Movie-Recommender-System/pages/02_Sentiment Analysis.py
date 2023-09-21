@@ -20,22 +20,22 @@ def load_models():
     abs_path = os.path.dirname(os.getcwd())
     tfidf, lr, xgb, cnb = None, None, None, None
     try:
-        tfidf =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/tfidf.joblib')
+        tfidf =  joblib.load('Sentiment-Analysis-API/Models/tfidf.joblib')
         print(tfidf)
     except Exception as exp:
         print(f"problem in loading tfidf - {str(exp)}")
     try:
-        lr =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/lr.joblib')
+        lr =  joblib.load('Sentiment-Analysis-API/Models/lr.joblib')
         print(lr)
     except Exception as exp:
         print(f"problem in loading lr - {str(exp)}")
     try:
-        xgb =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/xgb.joblib')
+        xgb =  joblib.load('Sentiment-Analysis-API/Models/xgb.joblib')
         print(xgb)
     except Exception as exp:
         print(f"problem in loading xgb - {str(exp)}")
     try:
-        cnb =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/cnb.joblib')
+        cnb =  joblib.load('Sentiment-Analysis-API/Models/cnb.joblib')
         print(cnb)
     except Exception as exp:
         print(f"problem in loading cnb - {str(exp)}")

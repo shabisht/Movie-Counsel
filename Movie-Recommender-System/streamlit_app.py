@@ -24,13 +24,13 @@ def import_dataset_similarity_matrix():
 
 # ================================ Calling class movie_counsel ot build web app ====================================================================================
 if __name__ == '__main__':
-    
+
     movie_counsel_obj = movie_counsel() # creating object
     movies_df, similarity = import_dataset_similarity_matrix() # importing datasets, ML Model
     movie_counsel_obj.set_source_data(movies_df, similarity)
     movie_counsel_obj.set_logo()
     movie_counsel_obj.set_title("Your Movie counseller")
-    movie_counsel_obj.create_inputBar_selectBar_resetButton()
+    movie_counsel_obj.create_inputBar_selectBar_resetButton(['InputMovieName', 'SearchedMovies', 'toogleButton', 'reset_button'])
     movie_counsel_obj.show_filters(np)
     
     if(len(st.session_state.default)>0):

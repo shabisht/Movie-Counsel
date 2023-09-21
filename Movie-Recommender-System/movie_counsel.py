@@ -62,18 +62,18 @@ class movie_counsel:
             st.session_state.default.update(st.session_state.SearchedMovies)
             st.session_state['default_value'] = st.session_state['default']
 
-    def create_textInput(self):
+    def create_textInput(self, key):
         ''' This method creates the text_input label. It takes User's input for serching movies/series'''
-        self.input_movie = st.text_input('', value=st.session_state['input_value'], key='InputMovieName', placeholder='Enter Movie/Series Name', label_visibility='collapsed', on_change = self.todo_on_text_input_change, disabled=st.session_state.disabled_inputBar)
+        self.input_movie = st.text_input('', value=st.session_state['input_value'], key=key, placeholder='Enter Movie/Series Name', label_visibility='collapsed', on_change = self.todo_on_text_input_change, disabled=st.session_state.disabled_inputBar)
         if self.input_movie != "":
             self.input_movie = self.input_movie.lower()
             index_list = st.session_state.movies_df[st.session_state.movies_df.name.str.contains(self.input_movie)].index.tolist()
             for x in index_list:
                 st.session_state['options'].add(st.session_state.movies_df.name.iloc[x])
    
-    def create_selectbar(self):
+    def create_selectbar(self, key):
         ''' This method creates the multiselect label. User's selection can be seen here'''
-        self.selectbar = st.multiselect("", key="SearchedMovies", options=sorted(list(st.session_state['options'])), default=st.session_state['default_value'], max_selections=5,label_visibility='collapsed', disabled=st.session_state.disabled_selectBar)
+        self.selectbar = st.multiselect("", key=key, options=sorted(list(st.session_state['options'])), default=st.session_state['default_value'], max_selections=5,label_visibility='collapsed', disabled=st.session_state.disabled_selectBar)
         if len(self.selectbar)>0:
             st.session_state.default.update(st.session_state.SearchedMovies)
 
@@ -103,9 +103,9 @@ class movie_counsel:
             st.session_state.disabled_inputBar = False
             st.session_state.slider_range = list(range(5,20))
 
-    def create_resetButton(self):
+    def create_resetButton(self, key):
         ''' This method creates a Reset Button. It will reset all the session_state variables'''
-        self.reset_button = st.button("Reset", key="reset_button", type='primary', on_click=self.todo_on_resetButton_clicked, use_container_width=True)
+        self.reset_button = st.button("Reset", key=key, type='primary', on_click=self.todo_on_resetButton_clicked, use_container_width=True)
     
     def todo_on_toogle_change(self):
         if st.session_state.toogleButton:
@@ -119,8 +119,8 @@ class movie_counsel:
             st.session_state.disabled_selectBar = False
             st.session_state.disabled_inputBar = False
 
-    def create_toogle(self):
-        self.toogle_button = st.toggle(":red[&#9776;]", key="toogleButton", help="Filter Movies" ,on_change=self.todo_on_toogle_change)
+    def create_toogle(self, key):
+        self.toogle_button = st.toggle(":red[&#9776;]", key=key, help="Filter Movies" ,on_change=self.todo_on_toogle_change)
 
     def todo_on_country_change(self):
         if len(st.session_state.filterCountry)>0:
@@ -336,18 +336,18 @@ class movie_counsel:
         """
         st.markdown(containers, unsafe_allow_html=True)
 
-    def create_inputBar_selectBar_resetButton(self):
+    def create_inputBar_selectBar_resetButton(self, keys):
         ''' This method will call methods to create text_input label, multiselect label and reset button, align them with in a single row using st.columns'''
         
         cols = self.create_n_columns([2,6,1,1])
         with cols[0]:
-            self.create_textInput()
+            self.create_textInput(keys[0])
         with cols[1]:
-            self.create_selectbar()
+            self.create_selectbar(keys[1])
         with cols[2]:
-            self.create_toogle()
+            self.create_toogle(keys[2])
         with cols[3]:
-            self.create_resetButton()
+            self.create_resetButton(keys[3])
 
     def recommend(self):
         ''' this method will recommend movies based on user's selected movies using the st.session_state.similarity matrix.

@@ -14,10 +14,12 @@ st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapp
 def call_api():
     # response  = requests.post(url='https://sentiment-analysis-api.up.railway.app/predict', data = json.dumps({'reviews':reviews})).text
     response  = requests.post(url=st.secrets['API_URL'], data = json.dumps({'reviews':reviews}))
+    print(response.status_code, response.text)
     return response
 
 def load_models():
     abs_path = os.path.dirname(os.getcwd())
+    print(abs_path)
     tfidf, lr, xgb, cnb = None, None, None, None
     try:
         tfidf =  joblib.load('Sentiment-Analysis-API/Models/tfidf.joblib')
@@ -119,7 +121,6 @@ elif temp != None:
         scores= json.loads(json.loads(response.text))
         scores = np.array([scores['lr'], scores['xgb'], scores['cnb']])
         produce_results(scores)
-
         
     elif(response.status_code >= 500):
         st.warning("Server is temporarily down, fetching results locally")

@@ -7,33 +7,35 @@ import plotly.graph_objects as go
 import re
 import joblib
 from nltk.stem import PorterStemmer
+import os
 
 st.set_page_config(page_title='Movie Counsel',  layout='wide', page_icon=':clapper:')
 
 def call_api():
     # response  = requests.post(url='https://sentiment-analysis-api.up.railway.app/predict', data = json.dumps({'reviews':reviews})).text
-    response  = requests.post(url=API_URL, data = json.dumps({'reviews':reviews}))
+    response  = requests.post(url='https://sentiment-analysis-api-szr4.onrender.com', data = json.dumps({'reviews':reviews}))
     return response
 
 def load_models():
+    abs_path = os.path.dirname(os.getcwd())
     tfidf, lr, xgb, cnb = None, None, None, None
     try:
-        tfidf =  joblib.load('Sentiment-Analysis-API/Models/tfidf.joblib')
+        tfidf =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/tfidf.joblib')
         print(tfidf)
     except Exception as exp:
         print(f"problem in loading tfidf - {str(exp)}")
     try:
-        lr =  joblib.load('Sentiment-Analysis-API/Models/lr.joblib')
+        lr =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/lr.joblib')
         print(lr)
     except Exception as exp:
         print(f"problem in loading lr - {str(exp)}")
     try:
-        xgb =  joblib.load('Sentiment-Analysis-API/Models/xgb.joblib')
+        xgb =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/xgb.joblib')
         print(xgb)
     except Exception as exp:
         print(f"problem in loading xgb - {str(exp)}")
     try:
-        cnb =  joblib.load('Sentiment-Analysis-API/Models/cnb.joblib')
+        cnb =  joblib.load(f'{abs_path}/Sentiment-Analysis-API/Models/cnb.joblib')
         print(cnb)
     except Exception as exp:
         print(f"problem in loading cnb - {str(exp)}")

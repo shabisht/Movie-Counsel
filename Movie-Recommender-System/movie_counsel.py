@@ -1,5 +1,6 @@
 # =========================== Imporitng required libraries ==============================================================================================
 import streamlit as st
+import os
 # ================================ Implementing OOPs to build WebApp ====================================================================================
 class movie_counsel:
 
@@ -42,7 +43,7 @@ class movie_counsel:
     def set_logo(self):
         ''' This methods will set the WebApp logo '''
         cols = self.create_n_columns(5)
-        cols[2].image("images/logo7.gif", use_column_width=True)
+        cols[2].image(f"{os.path.dirname(os.getcwd())}/Movie-Recommender-System/images/logo7.gif", use_column_width=True)
     
     def set_title(self, title_name):
         ''' This method will create st.title. It accepts a string to be diplayed as the Title'''

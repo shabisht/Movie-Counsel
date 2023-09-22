@@ -67,6 +67,29 @@ def make_prediction(lr, cnb, xgb):
             }
     return prob
 
+def draw_pie_chart(labels, score):
+    fig = go.Figure( data = [go.Pie(
+                                labels=labels,
+                                values = score,
+                                name = "Score",
+                                marker = dict(colors = ['#CF1020', '#004526']),
+                                title = "Sentiment Score"
+                        )])
+    fig.update_traces(hole = .6, pull = [0,0.1], hoverinfo="label+percent+name", textfont_size=28)
+    fig.update_layout(margin=dict(t=20, b=10, l=50, r=50), showlegend = False)
+    st.write(fig)
+
+def get_sentiment_text(score):
+    if score[0] >= score[1]:
+        st.info("Negative sentiment Detected")
+    else:
+        if score[1] >= 0.70:
+            st.info("Postive Sentiment Detected")
+        elif score[1] >= 0.60 and score[1] < 0.70:
+            st.info("Mixed Sentiment Detected")
+        else:
+            st.info("Negative Sentiment Detected")
+ 
 def produce_results(scores):
     if scores[0,1]-scores[1:,1].mean() > 0.10:
         scores[0,1] = scores[0,1]*0.85
@@ -78,29 +101,23 @@ def produce_results(scores):
     # st.write(scores)
     # st.write(scores.mean(axis=0))
     mean_scores = scores.mean(axis=0)
-    # print(mean_scores)
 
-    if mean_scores[0] >= mean_scores[1]:
-        st.info("Negative sentiment Detected")
+    selected_model = st.selectbox("", options=['All', 'Logistic Regression', 'XGBoost', 'Complement NB'], index=0)
+    if selected_model == 'All':
+        get_sentiment_text(mean_scores)
+        draw_pie_chart(['Negative','Postive'], mean_scores)
+
+    elif selected_model == 'Logistic Regression':
+        get_sentiment_text(scores[0])
+        draw_pie_chart(['Negative','Postive'], scores[0])
+
+    elif selected_model == 'XGBoost':
+        get_sentiment_text(scores[1])
+        draw_pie_chart(['Negative','Postive'], scores[1])
+
     else:
-        if mean_scores[1] >= 0.70:
-            st.info("Postive Sentiment Detected")
-        elif mean_scores[1] >= 0.60 and mean_scores[1] < 0.70:
-            st.info("Mixed Sentiment Detected")
-        else:
-            st.info("Negative Sentiment Detected")
-
-    fig = go.Figure( data = [go.Pie(
-                                labels=['Negative','Postive'],
-                                values = mean_scores,
-                                name = "Score",
-                                marker = dict(colors = ['#CF1020', '#004526'])
-                        )])
-    fig.update_traces(hole = .55, pull = [0,0.1], hoverinfo="label+percent+name", textfont_size=28)
-    fig.update_layout(margin=dict(t=20, b=10, l=50, r=50))
-
-    st.write(fig)
-
+        get_sentiment_text(scores[2])
+        draw_pie_chart(['Negative','Postive'], scores[2])
 
 cols = st.columns(5)
 cols[2].image('images/logo7.gif')
@@ -123,11 +140,12 @@ elif temp != None:
         produce_results(scores)
         
     elif(response.status_code >= 500):
-        st.warning("Server is temporarily down, fetching results locally")
+        st.toast("🤷 Server is temporarily down, fetching results locally")
         tfidf, lr, xgb, cnb = load_models()
         review = preprocessing_task(reviews)
         X =  tfidf.transform(pd.Series(review))
         prob = make_prediction(lr, cnb, xgb)
         scores = np.array([prob['lr'], prob['xgb'], prob['cnb']])
         produce_results(scores)
-    
+    else:
+        st.error(f"oops error occured with response code {response.status_code}")

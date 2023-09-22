@@ -19,7 +19,7 @@ This Streamlit based Web app helps you find the right recommendation for your fa
 
 ## 1. Movie Recommeder System
 - App Features
-    - Content + Popularity Based
+    - Content Based
     - Based on  [IMDB Movies Dataset](https://www.kaggle.com/datasets/ashishjangra27/imdb-movies-dataset)
     - Search and select max 5 Movies of your choice and get recommendation for those movies, with complete details like Cover Photo, Plot, Genre, Runtime, Country, Language, Kind, Director, Star-Cast etc.
 
@@ -63,7 +63,7 @@ Sentiment Analyzer for Movie Reviews is a comprehensive tool designed to evaluat
 
 - Sentiment Analyzer is implemented as a robust API using the FastAPI framework.
 - The API is hosted on the Railway cloud platform, ensuring scalability, reliability, and ease of deployment.
-- Sentiment analysis models are trained on a vast dataset comprising approximately 180,000 movie reviews sourced from IMDB.
+- Sentiment analysis models are trained on a vast dataset comprising approximately 180k movie reviews sourced from IMDB.
 - The reviews are scrapped from IMDB for both Hollywood and Bollywood releases from 2019 to September 2023 with help of Beautiful Soup.
 
 ### i) Data Preprocessing

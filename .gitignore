@@ -6,4 +6,5 @@ old_complete_dataset_with_urls
 movie_counsel_org.py
 __pycache__
 test
-*.joblib
+secrets.toml
+app_traditional_way.py

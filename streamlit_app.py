@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from urllib.request import urlopen
+import gdown
 from movie_counsel import *
 # =========================== Fetching dataset and ML Model ==============================================================================================
     
@@ -16,8 +17,16 @@ def import_dataset_similarity_matrix():
     
     # g_drive_url_joblib = "https://drive.google.com/uc?id=1-MxoPHx492LCSG45buqWYxycByHevZfe&confirm=t&uuid=742b2095-e0c5-4f0a-9f0e-8c9e1e0a5f5b&at=AB6BwCCo0Cg2rZlZuHXZhaAkms7S:1694004179033"
     g_drive_url_pkl = "https://drive.google.com/uc?id=1u7NLuxrBQKaN4Fj0KS2tt98Whz927BL-&confirm=t&uuid=2525fb6b-f249-4851-8036-27d3de86dad4&at=AB6BwCA59t4_ReTmngovNU0n1vNT:1694003393913"
-    similarity = pickle.load(urlopen(g_drive_url_pkl)) # loading similarity matrix for Recommendation
-    
+    try:
+        similarity = pickle.load(urlopen(g_drive_url_pkl)) # loading similarity matrix for Recommendation
+    except:
+        try:
+            gdown.download(g_drive_url_pkl, output="model-101.pkl")
+            with open('model-101.pkl', 'rb') as f:
+                similarity = pickle.load(f)
+        except:
+            st.write("ML Model can't be loaded")
+        
     return movies_df, similarity
 
 
